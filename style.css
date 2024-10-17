@@ -9,13 +9,73 @@ body {
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 0 10px;
+}
+
+body.dark {
+    background-color: #222;
+    color: #f4f4f4;
 }
 
 header {
-    background-color: #ff6600;
+    background: linear-gradient(45deg, #ff6600, #ff9900);
     color: white;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    transition: background-color 0.3s ease;
+}
+
+header.dark {
+    background: linear-gradient(45deg, #444, #777);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    height: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #ff6600;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
 .container {
@@ -30,6 +90,12 @@ header {
     border-radius: 5px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.item.dark {
+    background-color: #444;
+    color: #f4f4f4;
 }
 
 .item h2 {
@@ -42,4 +108,35 @@ footer {
     color: white;
     padding: 10px 0;
     margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+footer.dark {
+    background-color: #555;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr; /* Kolom tunggal di mobile */
+        gap: 15px; /* Kurangi jarak antar item */
+    }
+
+    #theme-toggle {
+        padding: 8px; /* Sesuaikan padding tombol di mobile */
+        font-size: 0.9rem; /* Sedikit kecilkan font */
+    }
+
+    .item {
+        padding: 10px; /* Kurangi padding item di mobile */
+    }
+
+    footer {
+        font-size: 0.9rem; /* Perkecil teks footer */
+        padding: 8px 0;
+    }
 }
